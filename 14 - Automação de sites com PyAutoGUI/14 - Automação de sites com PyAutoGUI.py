@@ -59,7 +59,9 @@ def passo4():
     passo5()
 
 def passo5():
-    pyautogui.hotkey(['home'] * 2)
+    pyautogui.hotkey('home')
+    sleep(1)
+    pyautogui.hotkey('home')
     sleep(1)
     passo6()
     
