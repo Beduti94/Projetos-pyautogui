@@ -1,0 +1,21 @@
+import pyautogui
+from time import sleep
+
+pyautogui.hotkey('win','r')
+sleep(0.5)
+pyautogui.write("opera",interval=0.05)
+pyautogui.press("enter")
+sleep(1)
+pyautogui.write("https://pt.wikipedia.org/wiki/Brasil",interval=0.05)
+pyautogui.press("enter")
+sleep(1)
+pyautogui.moveTo(1391,765,duration=2)
+pyautogui.scroll(-600)
+sleep(0.25)
+pyautogui.scroll(-600)
+sleep(0.25)
+pyautogui.scroll(-600)
+sleep(0.25)
+pyautogui.scroll(-600)
+sleep(0.25)
+pyautogui.scroll(-600)
