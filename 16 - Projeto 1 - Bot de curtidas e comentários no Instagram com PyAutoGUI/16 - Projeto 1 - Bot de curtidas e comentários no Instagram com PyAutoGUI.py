@@ -29,72 +29,94 @@ import pyautogui
 import webbrowser
 from time import sleep
 import time
-import os
+from datetime import datetime
 
-def acessar_site(): 
+def main():
+    data = datetime.now()
     login = pyautogui.prompt(title="Login do instagram",text="Digite seu telefone, nome de usuario ou email")
     senha = pyautogui.password(title="Login do instagram",text="Digite sua senha",mask='*')
-    webbrowser.open("https://www.instagram.com/?flo=true")
-    sleep(4)
-    entrar_posi = pyautogui.locateCenterOnScreen("entrar_2.png",confidence=0.8) # Coordenada de referência
-    pyautogui.moveTo(entrar_posi[0],entrar_posi[1],duration=0.78)
-    pyautogui.moveRel(0,-142,duration=0.5)
-    pyautogui.click()
-    pyautogui.typewrite(login)
-    pyautogui.press('tab')
-    pyautogui.typewrite(senha)
-    pyautogui.click(entrar_posi[0],entrar_posi[1])
-    sleep(6)
-    acessar_pagina()
-
-def acessar_pagina():
-    pyautogui.hotkey('ctrl','l')
-    pyautogui.typewrite('www.instagram.com/nike',interval=0.1)
-    pyautogui.press('enter')
-    sleep(4)
-    dar_like()
-
-def dar_like():
-    sleep(2)
-    seguir_posi = pyautogui.locateCenterOnScreen("seguir.png",confidence=0.8) # Coordenada de referência
-    pyautogui.moveTo(seguir_posi[0],seguir_posi[1],duration=2)
-    pyautogui.moveRel(-488,1036,duration=1.5)
-    pyautogui.click()
-    sleep(4)
-    no_sound_posi = pyautogui.locateCenterOnScreen("no_sound.png",confidence=0.8) # Coordenada de referência
-    pyautogui.moveTo(no_sound_posi[0],no_sound_posi[1])
-    pyautogui.moveRel(102,-176)
-    x, y = pyautogui.position()
-    heart_color = pyautogui.pixel(x,y)
-
-    if heart_color == (255,48,64): # Coração vermelho = ja dei like
-        pyautogui.alert(title="Aviso",text="ja curtiu!\nPausando bot por 24horas")
-        bot_pause()
-
-    elif heart_color == (0,0,0): # Coração preto (tema escuro) = não dei like
-        pyautogui.click()
+    def logout():
+            pyautogui.press('esc')
+            sleep(1)
+            pyautogui.moveRel(-1026,175,duration=1)
+            pyautogui.click(duration=1)
+            sleep(1)
+            pyautogui.moveRel(0,-115,duration=1)
+            pyautogui.click(duration=1)
+            bot_pause()
+        
+    def acessar_site(): 
+        sleep(2)
+        webbrowser.open("https://www.instagram.com/?flo=true")
+        sleep(4)
+        pyautogui.hotkey("alt","space","x")
         sleep(1)
-        pyautogui.press('tab')
-        pyautogui.press('enter')
-        pyautogui.typewrite("Cool!",interval=0.5)
-        pyautogui.press('tab')
-        pyautogui.press('enter')
-        pyautogui.alert(title="Aviso",text="ja curtiu!\nPausando bot por 24horas")
-        bot_pause()
-    elif heart_color == (255,255,255): # Coração branco (tema claro) = nao dei like
+        entrar_posi = pyautogui.locateCenterOnScreen("entrar_2.png",confidence=0.8) # Coordenada de referência
+        pyautogui.moveTo(entrar_posi[0],entrar_posi[1],duration=0.78)
+        pyautogui.moveRel(0,-142,duration=0.5)
         pyautogui.click()
-        sleep(1)
+        pyautogui.typewrite(login)
         pyautogui.press('tab')
-        pyautogui.press('enter')
-        pyautogui.typewrite("Cool!")
-        pyautogui.press('tab')
-        pyautogui.press('enter')
-        pyautogui.alert(title="Aviso",text="ja curtiu!\nPausando bot por 24horas")
-        bot_pause()
+        pyautogui.typewrite(senha)
+        pyautogui.click(entrar_posi[0],entrar_posi[1])
+        sleep(6)
+        acessar_pagina()
 
-def bot_pause():
-    sleep(86400)
+    def acessar_pagina():
+        pyautogui.hotkey('ctrl','l')
+        pyautogui.typewrite('www.instagram.com/nike',interval=0.1)
+        pyautogui.press('enter')
+        sleep(4)
+        dar_like()
+
+    def dar_like():
+        sleep(2)
+        seguir_posi = pyautogui.locateCenterOnScreen("seguir.png",confidence=0.8) # Coordenada de referência
+        pyautogui.moveTo(seguir_posi[0],seguir_posi[1],duration=2)
+        pyautogui.moveRel(-488,1036,duration=1.5)
+        pyautogui.click()
+        sleep(4)
+        no_sound_posi = pyautogui.locateCenterOnScreen("no_sound.png",confidence=0.8) # Coordenada de referência
+        pyautogui.moveTo(no_sound_posi[0],no_sound_posi[1])
+        pyautogui.moveRel(102,-176)
+        x, y = pyautogui.position()
+        heart_color = pyautogui.pixel(x,y)
+
+        if heart_color == (255,48,64): # Coração vermelho = ja dei like
+            print(f"Já curtiu! - {data.strftime("%d/%m/%Y %H:%M:%S")}")
+            sleep(2)            
+            logout()
+
+        elif heart_color == (0,0,0): # Coração preto (tema escuro) = não dei like
+            pyautogui.click()
+            print(f"Você deixou um like!{data.strftime("%d/%m/%Y %H:%M:%S")}")
+            sleep(1)
+            pyautogui.press('tab')
+            pyautogui.press('enter')
+            pyautogui.typewrite("Cool!",interval=0.5)
+            pyautogui.press('tab')
+            pyautogui.press('enter')
+            print(f"Você deixou um comentário!{data.strftime("%d/%m/%Y %H:%M:%S")}")
+            sleep(2)
+            logout()
+
+        elif heart_color == (255,255,255): # Coração branco (tema claro) = nao dei like
+            pyautogui.click()
+            print(f"Você deixou um like!{data.strftime("%d/%m/%Y %H:%M:%S")}")
+            sleep(1)
+            pyautogui.press('tab')
+            pyautogui.press('enter')
+            pyautogui.typewrite("Cool!")
+            pyautogui.press('tab')
+            pyautogui.press('enter')
+            print(f"Você deixou um comentário!{data.strftime("%d/%m/%Y %H:%M:%S")}")
+            sleep(2)
+            logout()
+
+    def bot_pause():
+        sleep(10)
+        pyautogui.hotkey("ctrl","f4")
+        acessar_site()
+
     acessar_site()
-acessar_site()
-
-
+main()
