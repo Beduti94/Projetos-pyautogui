@@ -68,7 +68,7 @@ def dar_like():
     heart_color = pyautogui.pixel(x,y)
 
     if heart_color == (255,48,64): # Coração vermelho = ja dei like
-        pyautogui.alert(text="ja curtiu!\nPausando bot por 24horas")
+        pyautogui.alert(title="Aviso",text="ja curtiu!\nPausando bot por 24horas")
         bot_pause()
 
     elif heart_color == (0,0,0): # Coração preto (tema escuro) = não dei like
@@ -79,7 +79,7 @@ def dar_like():
         pyautogui.typewrite("Cool!",interval=0.5)
         pyautogui.press('tab')
         pyautogui.press('enter')
-        pyautogui.alert(text="ja curtiu!\nPausando bot por 24horas")
+        pyautogui.alert(title="Aviso",text="ja curtiu!\nPausando bot por 24horas")
         bot_pause()
     elif heart_color == (255,255,255): # Coração branco (tema claro) = nao dei like
         pyautogui.click()
@@ -89,7 +89,7 @@ def dar_like():
         pyautogui.typewrite("Cool!")
         pyautogui.press('tab')
         pyautogui.press('enter')
-        pyautogui.alert(text="ja curtiu!\nPausando bot por 24horas")
+        pyautogui.alert(title="Aviso",text="ja curtiu!\nPausando bot por 24horas")
         bot_pause()
 
 def bot_pause():
