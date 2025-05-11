@@ -44,7 +44,7 @@ def main():
             pyautogui.moveRel(0,-115,duration=1)
             pyautogui.click(duration=1)
             bot_pause()
-        
+
     def acessar_site(): 
         sleep(2)
         webbrowser.open("https://www.instagram.com/?flo=true")
